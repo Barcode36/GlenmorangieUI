@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ruddlesdin</groupId>
   <artifactId>GlenmorangieUI</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0</version>
   <name>GlenmorangieUI</name>
   <description>A bespoke User Interface for the existing Glenmorangie project</description>
   
@@ -27,6 +27,13 @@
       	<scope>test</scope>
     </dependency>
   </dependencies>
+ 
+  <scm>
+    <connection>scm:svn:http://127.0.0.1/dummy</connection>
+    <developerConnection>scm:svn:https://127.0.0.1/dummy</developerConnection>
+    <tag>HEAD</tag>
+    <url>http://127.0.0.1/dummy</url>
+  </scm>
   
   <build>
 
@@ -40,6 +47,29 @@
 	</resources>
 		
     <plugins>
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>buildnumber</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <format>{0,number}</format>
+          <items>
+            <item>buildNumber</item>
+          </items>                    
+          <doCheck>false</doCheck>
+          <doUpdate>false</doUpdate>
+          <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>   
+        </configuration>
+      </plugin> 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -83,6 +113,6 @@
         </executions>
       </plugin>
     </plugins>
-
+	<finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
   </build>
 </project>
