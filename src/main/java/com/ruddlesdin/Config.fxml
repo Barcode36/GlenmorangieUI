@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="351.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="lblConfiguration" layoutX="95.0" layoutY="22.0" text="Configuration">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblLine" layoutX="51.0" layoutY="77.0" text="Line:" />
+        <ComboBox fx:id="cbxLine" layoutX="96.0" layoutY="72.0" prefHeight="25.0" prefWidth="149.0" />
+        <Button fx:id="btnConfigClose" layoutX="237.0" layoutY="306.0" mnemonicParsing="false" onAction="#closeConfig" text="Close" />
+      <Label layoutX="61.0" layoutY="202.0" prefHeight="86.0" prefWidth="218.0" text="Config xml file can be found at: C:\ProgramData\QuickDesignUI\&lt;jar file name&gt;.xml" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="lblIPAddress" layoutX="14.0" layoutY="127.0" text="IP Address:" />
+      <Label fx:id="lblDBPath" layoutX="32.0" layoutY="165.0" text="DB Path:" />
+      <TextField fx:id="txtIPAddress" layoutX="95.0" layoutY="122.0" />
+      <TextField fx:id="txtDBPath" layoutX="95.0" layoutY="160.0" />
+    </children>
+</AnchorPane>

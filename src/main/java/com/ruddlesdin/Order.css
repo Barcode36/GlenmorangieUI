@@ -1,0 +1,31 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root {
+    -fx-border-color: green;
+}
+#txtStatus {
+    -fx-background-color: none;
+    -fx-text-fill: blue;
+}
+#txtLine {
+    -fx-background-color: none;
+    -fx-text-fill: blue;
+}
+#txtSSCC {
+    -fx-background-color: none;
+    -fx-text-inner-color: red;
+    -fx-font-weight: bold;
+    -fx-font: 16px Tahoma;
+}
+#txtOrderBanner {
+    -fx-background-color: none;
+    -fx-text-inner-color: red;
+    -fx-font-weight: bold;
+    -fx-font: 16px Tahoma;
+}
+
+#txtThinking {
+    -fx-background-color: none;
+    -fx-text-inner-color: orange;
+    -fx-font-weight: bold;
+    -fx-font: 16px Tahoma;
+}
