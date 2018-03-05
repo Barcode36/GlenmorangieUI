@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QuickDesignUI>
+    <Config>
+        <line>Caledonian</line>
+        <IPAddress>localhost</IPAddress>
+        <DBPath>C:\Var\db\UTF-8\Glenmorangie\Glenmorangie.FDB</DBPath>
+    </Config>
+</QuickDesignUI>

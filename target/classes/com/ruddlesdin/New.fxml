@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="460.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TextField fx:id="txtNewProduct" layoutX="14.0" layoutY="72.0" onKeyReleased="#productSearch" prefHeight="25.0" prefWidth="189.0" promptText="Start typing GMIE code" />
+        <TextField fx:id="txtChosenProduct" editable="false" layoutX="16.0" layoutY="285.0" prefHeight="25.0" prefWidth="189.0" promptText="Select a product" />
+        <TextField fx:id="txtNewShopOrder" layoutX="16.0" layoutY="334.0" onKeyReleased="#checkShopOrder" prefHeight="25.0" prefWidth="189.0" promptText="55555" />
+        <TextField fx:id="txtNewRotation1" layoutX="16.0" layoutY="387.0" onKeyReleased="#checkRotation1" prefHeight="25.0" prefWidth="45.0" promptText="17" />
+      <TextField fx:id="txtNewRotation2" layoutX="83.0" layoutY="387.0" onKeyReleased="#checkRotation2" prefHeight="25.0" prefWidth="55.0" promptText="2852" />
+      <TextField fx:id="txtNewRotation3" layoutX="158.0" layoutY="387.0" onKeyReleased="#checkRotation3" prefHeight="25.0" prefWidth="45.0" promptText="01" />
+        <Button fx:id="btnCreateOrder" layoutX="362.0" layoutY="367.0" mnemonicParsing="false" onAction="#createNewOrder" prefHeight="45.0" prefWidth="106.0" text="Create Order" />
+        <Button fx:id="btnNewClose" layoutX="413.0" layoutY="421.0" mnemonicParsing="false" onAction="#closeNew" text="Close" />
+        <Label focusTraversable="false" layoutX="14.0" layoutY="14.0" text="New Order">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <ListView fx:id="livNewProduct" focusTraversable="false" layoutX="219.0" layoutY="72.0" maxWidth="-Infinity" minWidth="-Infinity" onMousePressed="#insertChosenProduct" prefHeight="180.0" prefWidth="244.0" />
+        <Label focusTraversable="false" layoutX="14.0" layoutY="50.0" text="Product Search" />
+        <Label focusTraversable="false" layoutX="16.0" layoutY="315.0" text="Shop Order (55555)" />
+        <Label focusTraversable="false" layoutX="14.0" layoutY="368.0" text="Rotation (17/2863/01)" />
+        <Label focusTraversable="false" layoutX="219.0" layoutY="50.0" text="Select Product" />
+        <Label fx:id="lblChosenProduct" focusTraversable="false" layoutX="18.0" layoutY="265.0" text="Chosen Product" />
+      <Label focusTraversable="false" layoutX="70.0" layoutY="391.0" text="/" />
+      <Label focusTraversable="false" layoutX="147.0" layoutY="391.0" text="/" />
+    </children>
+</AnchorPane>

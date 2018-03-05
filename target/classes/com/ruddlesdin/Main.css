@@ -1,0 +1,24 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root {
+    -fx-border-color: green;
+}
+#txtMainBanner {
+    -fx-background-color: none;
+}
+#txtMainDB {
+    -fx-background-color: none;
+}
+
+#txtLineBanner {
+    -fx-background-color: none;
+}
+#txtCurrentSSCC {
+    -fx-background-color: none;
+    -fx-text-inner-color: red;
+    -fx-font-weight: bold;
+    -fx-font: 16px Tahoma;
+}
+
+.clmStatusBold {
+    -fx-font-weight: bold;
+}
