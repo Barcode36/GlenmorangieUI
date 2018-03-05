@@ -30,7 +30,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnTest" layoutX="367.0" layoutY="32.0" mnemonicParsing="false" onAction="#checkFBConnection" text="Test" />
+      <Button fx:id="btnTest" layoutX="367.0" layoutY="29.0" mnemonicParsing="false" onAction="#checkFBConnection" text="Test" />
       <Button fx:id="btnAbout" layoutX="903.0" layoutY="16.0" mnemonicParsing="false" onAction="#openAbout" text="About" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="16.0" />
       <Button fx:id="btnConfig" layoutX="969.0" layoutY="16.0" mnemonicParsing="false" onAction="#openConfig" text="Configuration" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="16.0" />
       <ToggleButton fx:id="tbnReady" layoutX="367.0" layoutY="107.0" mnemonicParsing="false" onAction="#filter" prefHeight="31.0" prefWidth="61.0" selected="true" text="Ready" textFill="#138312">
@@ -41,7 +41,7 @@
             <Glow />
          </effect>
       </ToggleButton>
-      <ToggleButton fx:id="tbnStarted" layoutX="430.0" layoutY="107.0" mnemonicParsing="false" onAction="#filter" selected="true" text="Started" textFill="#eaee0b" />
+      <ToggleButton fx:id="tbnStarted" layoutX="432.0" layoutY="107.0" mnemonicParsing="false" onAction="#filter" selected="true" text="Started" textFill="#eaee0b" />
       <ToggleButton fx:id="tbnDone" layoutX="501.0" layoutY="107.0" mnemonicParsing="false" onAction="#filter" text="Done" textFill="#bcb9b9" />
       <ComboBox fx:id="cbxSearch" layoutX="577.0" layoutY="107.0" prefHeight="25.0" prefWidth="107.0" promptText="Search by" />
       <TextField fx:id="txtSearch" layoutX="687.0" layoutY="106.0" prefHeight="31.0" prefWidth="179.0" />

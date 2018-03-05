@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class OrderController implements Initializable{
@@ -100,7 +101,7 @@ public class OrderController implements Initializable{
         populateWindow();
         setButtonStates();
         txtEditSSCC.addEventFilter(KeyEvent.KEY_TYPED,maxLength(6));
-		txtRepackBatch.addEventFilter(KeyEvent.KEY_TYPED,maxLength(5));
+	txtRepackBatch.addEventFilter(KeyEvent.KEY_TYPED,maxLength(5));
         setComboBoxSSCCYear();
         initialiseDatePickerFormat();
         pgiThinking.setVisible(false);
@@ -400,9 +401,18 @@ public class OrderController implements Initializable{
 
         cbxRepackYear.getItems().addAll(
                 "14","15","16","17","18","19","20","21","22","23","24","25","26","27");
-        cbxRepackYear.getSelectionModel().select("17");
+        //cbxRepackYear.getSelectionModel().select("18");
+        cbxRepackYear.getSelectionModel().select(getCurrentYY());
+        
     }
 
+    public static String getCurrentYY() {
+    SimpleDateFormat sdfDate = new SimpleDateFormat("yy");//yy
+    Date now = new Date();
+    String strDate = sdfDate.format(now);
+    return strDate;
+    }
+    
     public void startOrder() { // Called from btnOrderStart in Order.fxml
 
         Task<Void> task = new Task<Void>() {
