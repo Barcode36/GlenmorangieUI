@@ -274,7 +274,7 @@ public class FirebirdConnect{
         FBConnection();
         int prodLineNr2 = getProductionLineNr(list2.get(0).getProductionLineNr());
         prodLineNr = Integer.toString(prodLineNr2);
-        String insertProdLineReq = "INSERT INTO tblProductionRequest(ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, RequestDateTime, ExtraValue1, ExtraValue2, ExtraValue3, ExtraValue4, ExtraValue5, EXTRABOOLEAN1, EXTRABOOLEAN2, EXTRABOOLEAN3, EXTRABOOLEAN4, EXTRABOOLEAN5, RECIPIENTKEYNR, RECIPIENTAREA, FORCECHECKREVISION, ORDERPRODUCTIONNR, PROCTIONLINRNR, EXTRA1, EXTRA2, EXTRA3, WARENR, BATCHLOTNR) " +
+        String insertProdLineReq = "INSERT INTO tblProductionRequest(ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, RequestDateTime, ExtraValue1, ExtraValue2, ExtraValue3, ExtraValue4, ExtraValue5, EXTRABOOLEAN1, EXTRABOOLEAN2, EXTRABOOLEAN3, EXTRABOOLEAN4, EXTRABOOLEAN5, RECIPIENTKEYNR, RECIPIENTAREA, FORCECHECKREVISION, ORDERPRODUCTIONNR, PRODUCTIONLINENR, EXTRA1, EXTRA2, EXTRA3, WARENR, BATCHLOTNR) " +
                 "SELECT ProductionControllerNr, ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, CURRENT_TIMESTAMP, null AS ExtraValue1, null AS ExtraValue2, null AS ExtraValue3, null AS ExtraValue4, null AS ExtraValue5, null AS EXTRABOOLEAN1, null AS EXTRABOOLEAN2, null AS EXTRABOOLEAN3, null AS EXTRABOOLEAN4, null AS EXTRABOOLEAN5, null AS RECIPIENTKEYNR, null AS RECIPIENTAREA,'1' AS FORCECHECKREVISION, null AS ORDERPRODUCTIONNR, null AS PRODUCTIONLINENR, null AS EXTRA1, null AS EXTRA2, null AS EXTRA3, null AS WARENR, null AS BATCHLOTNR FROM tblProdLineRequest WHERE PRODUCTIONLINENR = " + prodLineNr + " AND PRODUCTIONACTIONTYPENR = " + type;
         executeUpdate(insertProdLineReq);
         FBConnectionClose();
@@ -282,6 +282,7 @@ public class FirebirdConnect{
 
     void updateLaser(String orderNr, String editSSCC) {
         String type = "511";
+        
 		pressButton(orderNr,editSSCC,type);
     }
 
@@ -324,7 +325,7 @@ public class FirebirdConnect{
         executeUpdate(insertProdLineReq);
         FBConnectionClose();
     }
-
+    
     int startOrder(String orderNr, String repack, String repackBatch, String repackDate, String SSCCYear, String caseCount, String editSSCC, String partPallet, String shopOrder) {
         list2 = getOrderData(Integer.parseInt(orderNr));
         String wareNr = list2.get(0).getWarenr();
@@ -399,14 +400,14 @@ public class FirebirdConnect{
 						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
 								+ prodLineNr + ", 525, 500, 'SET(RESOURCES.APP_REPACK," + repack + ")', 'true', 0, 1, 1);";
 				executeUpdate(calRepackResources);
-				String calRepackDateResources =
-						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
-								+ prodLineNr + ", 525, 500, 'SET(RESOURCES.APP_REPACKBATCH," + repackBatch + ")', 'true', 0, 1, 1);";
-				executeUpdate(calRepackDateResources);
 				String calRepackBatchResources =
 						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
-								+ prodLineNr + ", 525, 500, 'SET(RESOURCES.APP_REPACKDATE," + repackDate + ")', 'true', 0, 1, 1);";
+								+ prodLineNr + ", 525, 500, 'SET(RESOURCES.APP_REPACKBATCH," + repackBatch + ")', 'true', 0, 1, 1);";
 				executeUpdate(calRepackBatchResources);
+				String calRepackDateResources =
+						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
+								+ prodLineNr + ", 525, 500, 'SET(RESOURCES.APP_REPACKDATE," + repackDate + ")', 'true', 0, 1, 1);";
+				executeUpdate(calRepackDateResources);
 				String calRepackYearResources =
 						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
 								+ prodLineNr + ", 525, 500, 'SET(RESOURCES.APP_REPACKYEAR," + SSCCYear + ")', 'true', 0, 1, 1);";
@@ -434,14 +435,14 @@ public class FirebirdConnect{
 						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
 								+ prodLineNr + ", 527, 500, 'SET(RESOURCES.APP_REPACK," + repack + ")', 'true', 0, 1, 1);";
 				executeUpdate(flexiRepackResources);
-				String flexiRepackDateResources =
-						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
-								+ prodLineNr + ", 527, 500, 'SET(RESOURCES.APP_REPACKBATCH," + repackBatch + ")', 'true', 0, 1, 1);";
-				executeUpdate(flexiRepackDateResources);
 				String flexiRepackBatchResources =
 						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
-								+ prodLineNr + ", 527, 500, 'SET(RESOURCES.APP_REPACKDATE," + repackDate + ")', 'true', 0, 1, 1);";
+								+ prodLineNr + ", 527, 500, 'SET(RESOURCES.APP_REPACKBATCH," + repackBatch + ")', 'true', 0, 1, 1);";
 				executeUpdate(flexiRepackBatchResources);
+				String flexiRepackDateResources =
+						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
+								+ prodLineNr + ", 527, 500, 'SET(RESOURCES.APP_REPACKDATE," + repackDate + ")', 'true', 0, 1, 1);";
+				executeUpdate(flexiRepackDateResources);
 				String flexiRepackYearResources =
 						"INSERT INTO tblProductionRequest(ProductionLineNr,ProductionControllerNr,ProductionActionTypeNr, Parameters, WhereClause, SkipFactor, Repetition, FORCECHECKREVISION) VALUES( "
 								+ prodLineNr + ", 527, 500, 'SET(RESOURCES.APP_REPACKYEAR," + SSCCYear + ")', 'true', 0, 1, 1);";

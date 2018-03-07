@@ -242,30 +242,30 @@ public class OrderController implements Initializable{
                 btnPartPallet.setDisable(false);
                 txtCaseCount.setDisable(false);
                 txtPartPallet.setDisable(false);
-				if (!mainController.getProductionLine().equals("Caledonian")) {
-					chxCaseLabellerA.setVisible(false);
-					chxCaseLabellerA.setDisable(true);
-					chxCaseLabellerB.setVisible(false);
-					chxCaseLabellerB.setDisable(true);
-					chxFlexiLine.setVisible(false);
-					chxFlexiLine.setDisable(true);
-					btnClearQueue.setVisible(false);
+		if (!mainController.getProductionLine().equals("Caledonian")) {
+                    chxCaseLabellerA.setVisible(false);
+                    chxCaseLabellerA.setDisable(true);
+                    chxCaseLabellerB.setVisible(false);
+                    chxCaseLabellerB.setDisable(true);
+                    chxFlexiLine.setVisible(false);
+                    chxFlexiLine.setDisable(true);
+                    btnClearQueue.setVisible(false);
                     btnClearQueue.setDisable(true);
-				} else {
-					chxCaseLabellerA.setVisible(true);
-					chxCaseLabellerA.setDisable(false);
-					chxCaseLabellerB.setVisible(true);
-					chxCaseLabellerB.setDisable(false);
-					chxFlexiLine.setVisible(true);
-					chxFlexiLine.setDisable(false);
-					btnClearQueue.setVisible(true);
-					btnClearQueue.setDisable(false);
-				}
+		} else {
+                    chxCaseLabellerA.setVisible(true);
+                    chxCaseLabellerA.setDisable(false);
+                    chxCaseLabellerB.setVisible(true);
+                    chxCaseLabellerB.setDisable(false);
+                    chxFlexiLine.setVisible(true);
+                    chxFlexiLine.setDisable(false);
+                    btnClearQueue.setVisible(true);
+                    btnClearQueue.setDisable(false);
+                }
                 btnDelete.setDisable(true);
-                cbxRepackYear.setDisable(false);
-                chxRepack.setDisable(false);
-                txtRepackDate.setDisable(false);
-                txtRepackBatch.setDisable(false);
+                cbxRepackYear.setDisable(true);
+                chxRepack.setDisable(true);
+                txtRepackDate.setDisable(true);
+                txtRepackBatch.setDisable(true);
                 btnRestore.setDisable(false);
                 break;
             default:
@@ -505,6 +505,7 @@ public class OrderController implements Initializable{
             df.parse(date);
             return true;
         } catch (ParseException e) {
+            System.out.println (e.getMessage()) ;
             return false;
         }
     }
