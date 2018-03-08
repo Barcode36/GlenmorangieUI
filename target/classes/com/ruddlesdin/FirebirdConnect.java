@@ -282,8 +282,7 @@ public class FirebirdConnect{
 
     void updateLaser(String orderNr, String editSSCC) {
         String type = "511";
-        
-		pressButton(orderNr,editSSCC,type);
+        pressButton(orderNr,editSSCC,type);
     }
 
     void updateCaseLabeller(String orderNr, String editSSCC) {
@@ -302,17 +301,17 @@ public class FirebirdConnect{
     }
 
     void partPallet(String orderNr, String editSSCC) {
-		String type = "515";
-		pressButton(orderNr,editSSCC,type);
+	String type = "515";
+	pressButton(orderNr,editSSCC,type);
     }
 
-	int restore(String orderNr) {
-		FBConnection();
-		String restore = "UPDATE TBLORDERPRODUCTION SET STATUS = 6 WHERE ORDERPRODUCTIONNR = " + orderNr;
-		executeUpdate(restore);
-		FBConnectionClose();
-		return 0;
-	}
+    int restore(String orderNr) {
+	FBConnection();
+	String restore = "UPDATE TBLORDERPRODUCTION SET STATUS = 6 WHERE ORDERPRODUCTIONNR = " + orderNr;
+	executeUpdate(restore);
+	FBConnectionClose();
+	return 0;
+    }
 
     void clearQueue(String orderNr, String editSSCC) {
         setSSCC(orderNr,editSSCC);

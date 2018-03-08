@@ -566,6 +566,8 @@ public class OrderController implements Initializable{
     }
 
     public void setResources() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        LocalDate date = txtRepackDate.getValue();
         String repack;
         if (chxRepack.isSelected()) {
             repack = "1";
@@ -576,9 +578,9 @@ public class OrderController implements Initializable{
         if (txtRepackDate.getValue() == null) {
             repackDate = "0";
         } else {
-
-            if (isDateValid(txtRepackDate.getValue().toString())) {
-                repackDate = txtRepackDate.getValue().toString();
+            repackDate = formatter.format(date);
+            if (isDateValid(repackDate)) {
+                repackDate = formatter.format(date);
             } else {
                 repackDate = "01/01/1970";
             }
@@ -610,22 +612,6 @@ public class OrderController implements Initializable{
             mainController.setBanner("Wrong Supervisor Password !","RED");
         }
 
-    }
-
-    public void clearQueue() { //Called from btnClearQueue in Order.fxml
-			String editSSCC = txtEditSSCC.getText();
-			String orderNr = txtQDOrderNr.getText();
-			sup = new Supervisor(false);
-			if (sup.supervisorTest()) {
-				log.userLog("user pressed the Clear Queue button\r\n");
-				log.appLog("user pressed the Clear Queue button\r\n");
-				System.out.println("Clear Queue Button Pressed");
-				fc.clearQueue(orderNr, editSSCC);
-
-			} else {
-				log.userLog("Wrong Password Entered");
-				mainController.setBanner("Wrong Supervisor Password !", "RED");
-			}
     }
 
     public void updateCaseLabeller() { //Called from btnCaseLabeller in Order.fxml
@@ -668,6 +654,22 @@ public class OrderController implements Initializable{
         fc.partPallet(orderNr,editSSCC);
     }
 
+        public void clearQueue() { //Called from btnClearQueue in Order.fxml
+			String editSSCC = txtEditSSCC.getText();
+			String orderNr = txtQDOrderNr.getText();
+			sup = new Supervisor(false);
+			if (sup.supervisorTest()) {
+				log.userLog("user pressed the Clear Queue button\r\n");
+				log.appLog("user pressed the Clear Queue button\r\n");
+				System.out.println("Clear Queue Button Pressed");
+				fc.clearQueue(orderNr, editSSCC);
+
+			} else {
+				log.userLog("Wrong Password Entered");
+				mainController.setBanner("Wrong Supervisor Password !", "RED");
+			}
+    }
+        
 	public void restore() { //Called from btnRestore in Order.fxml
 			String orderNr = txtQDOrderNr.getText();
 			log.userLog("user pressed the Restore button\r\n");
