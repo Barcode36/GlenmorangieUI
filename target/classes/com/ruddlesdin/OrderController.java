@@ -454,23 +454,22 @@ public class OrderController implements Initializable{
             repack = "0";
         }
         String repackDate;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-		LocalDate date = txtRepackDate.getValue();
-		if (date != null) {
-
-			repackDate = formatter.format(date);
-			if (!isDateValid(repackDate)) {
-				repackDate = "01/01/1970";
-		}
-		} else {
-			repackDate = "0";
-		}
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+	LocalDate date = txtRepackDate.getValue();
+	if (date != null) {
+            repackDate = formatter.format(date);
+            if (!isDateValid(repackDate)) {
+		repackDate = "01/01/1970";
+            }
+	} else {
+            repackDate = "0";
+	}
         String repackBatch = txtRepackBatch.getText();
         String repackYear = cbxRepackYear.getValue().toString();
         String caseCount = txtCaseCount.getText();
         if (caseCount.isEmpty()) {
-        	caseCount = "1";
-		}
+            caseCount = "1";
+        }
         String editSSCC = txtEditSSCC.getText();
         String partPallet = txtPartPallet.getText();
         String shopOrder = txtShopOrder.getText();
@@ -557,9 +556,9 @@ public class OrderController implements Initializable{
             mainController.setBanner("This order is NOT running","red");
             orderBanner("This order is NOT running","red");
         }
-		System.out.println("Stop button tasks done");
-		log.userLog("Stop button tasks done\r\n");
-		System.out.println("Status = " + list.get(0).getStatus());
+	System.out.println("Stop button tasks done");
+	log.userLog("Stop button tasks done\r\n");
+	System.out.println("Status = " + list.get(0).getStatus());
         refresh();
         System.out.println("Status = " + list.get(0).getStatus());
         System.out.println("Refresh done");
@@ -622,6 +621,7 @@ public class OrderController implements Initializable{
         log.appLog("user pressed the Update Case Labeller button\r\n");
         System.out.println("Update Case Labeller Button Pressed");
         fc.updateCaseLabeller(orderNr,editSSCC);
+        mainController.fullRefresh();
     }
 
     public void updateLogopak() { //Called from btnUpdateLogopak in Order.fxml
@@ -654,48 +654,47 @@ public class OrderController implements Initializable{
         fc.partPallet(orderNr,editSSCC);
     }
 
-        public void clearQueue() { //Called from btnClearQueue in Order.fxml
-			String editSSCC = txtEditSSCC.getText();
-			String orderNr = txtQDOrderNr.getText();
-			sup = new Supervisor(false);
-			if (sup.supervisorTest()) {
-				log.userLog("user pressed the Clear Queue button\r\n");
-				log.appLog("user pressed the Clear Queue button\r\n");
-				System.out.println("Clear Queue Button Pressed");
-				fc.clearQueue(orderNr, editSSCC);
-
-			} else {
-				log.userLog("Wrong Password Entered");
-				mainController.setBanner("Wrong Supervisor Password !", "RED");
-			}
+    public void clearQueue() { //Called from btnClearQueue in Order.fxml
+	String editSSCC = txtEditSSCC.getText();
+	String orderNr = txtQDOrderNr.getText();
+	sup = new Supervisor(false);
+	if (sup.supervisorTest()) {
+            log.userLog("user pressed the Clear Queue button\r\n");
+            log.appLog("user pressed the Clear Queue button\r\n");
+            System.out.println("Clear Queue Button Pressed");
+            fc.clearQueue(orderNr, editSSCC);
+	} else {
+            log.userLog("Wrong Password Entered");
+            mainController.setBanner("Wrong Supervisor Password !", "RED");
+	}
     }
         
-	public void restore() { //Called from btnRestore in Order.fxml
-			String orderNr = txtQDOrderNr.getText();
-			log.userLog("user pressed the Restore button\r\n");
-			log.appLog("user pressed the Restore button\r\n");
-			System.out.println("Restore Button Pressed");
-			int result = fc.restore(orderNr);
-			if (result == 0) {
-				mainController.setBanner("Order " + orderNr + " restored", "green");
-				orderBanner("Order " + orderNr + " restored", "green");
-				getData();
-				Task<Void> task = new Task<Void>() {
-					@Override protected Void call() throws Exception {// perform any updates to the UI on the FX Application Thread:
-						// code that updates UI
-						Platform.runLater(() -> populateWindow());
-						return null;
-					}
-				};
-				Thread th = new Thread(task);
-				th.setDaemon(true);
-				th.start();
-				setButtonStates();
-				mainController.fullRefresh();
-			} else {
-				mainController.setBanner("Could not restore order", "red");
-				orderBanner("Could not restore order", "red");
-			}
-
+    public void restore() { //Called from btnRestore in Order.fxml
+	String orderNr = txtQDOrderNr.getText();
+	log.userLog("user pressed the Restore button\r\n");
+	log.appLog("user pressed the Restore button\r\n");
+	System.out.println("Restore Button Pressed");
+	int result = fc.restore(orderNr);
+	if (result == 0) {
+            mainController.setBanner("Order " + orderNr + " restored", "green");
+            orderBanner("Order " + orderNr + " restored", "green");
+            getData();
+            Task<Void> task = new Task<Void>() {
+		@Override protected Void call() throws Exception {// perform any updates to the UI on the FX Application Thread:
+		// code that updates UI
+		Platform.runLater(() -> populateWindow());
+		return null;
+            }
+	};
+	Thread th = new Thread(task);
+	th.setDaemon(true);
+	th.start();
+	setButtonStates();
+	mainController.fullRefresh();
+	} else {
+            mainController.setBanner("Could not restore order", "red");
+            orderBanner("Could not restore order", "red");
 	}
+        startOrderButtonPressed();
+    }
 }
